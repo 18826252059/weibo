@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Herit~音乐工厂</title>
+    <link rel="stylesheet" href="../../../src/home/css/frame.css">
+    <link rel="stylesheet" href="../../../src/home/css/music.css">
+    <link rel="stylesheet" href="../../../src/home/css/form.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../src/home/image/favicon.ico" />
+</head>
+<body>	
+<div class="header">
+	<div class="header-center center">
+		<h1>Herit 音乐场</h1>
+		<ul class="nav">
+			<li><a class="active" href="javascript:;">发现音乐</a></li>
+			<li><a href="./my.html">我的音乐</a></li>
+			<li><a href="../controller/test.php">热门专辑</a></li>
+			<li><a href="javascript:;">在线好友</a></li>
+		</ul>
+		<div class="top-tool">
+			<input type="text" class="top-text" placeholder="单曲/歌手/专辑/歌单/用户">
+			<div class="top-user">
+                <a href="./reg.html" class="user-login">注册</a>
+            </div>	
+		</div>
+	</div>
+
+<div class="wrap">
+	<div class="wrap-in">
+
+	    <form name="login" method="post" action="../controller/checkLogin.php">
+	    	<div class="title">
+	    		<h3>邮箱登录</h3>
+	    	</div>
+	        <div class="text text-top">
+	            <input type="text" name="user">
+	        </div>
+	        <div class="text">
+	            <input type="password" name="pwd">
+	        </div>
+	        <div class="tips">
+	        	帐号或密码错误
+	        </div>
+	        <div class="operate">
+	        	<input type="checkbox" id="autoLogin"><label for="autoLogin">自动登录</label>
+	        	<span>忘记密码?</span>
+	        </div>
+	        <div class="submit">
+	        	<input type="submit" value="登录">
+	        </div>
+	        <div class="bottom">
+	        	<a href="./reg.html">没有帐号？免费注册 > </a>
+	        </div>
+	    </form>
+
+	</div>
+</div>
+
+<div class="footer">
+    <div class="footer-center">
+        <a class="recruit" href="javascript:;">
+            <p>独立音乐人招募计划</p>
+            <span>加入我们 即将与超过亿万乐迷互动</span>
+        </a>
+        <div class="copy">
+            <ul class="copy-list">
+                <li><a href="javascript:;">关于本站</a></li><li>-</li>
+                <li><a href="javascript:;"> 客户服务</a></li><li>-</li>
+                <li><a href="javascript:;"> 服务条款</a></li><li>-</li>
+                <li><a href="javascript:;"> 网站导航</a></li>
+                <span>Herit旗下版权所有©1997-2015 </span>
+            </ul>
+            <p>网络文化经营许可证：粤网文[2014]0332-034号</p>
+        </div>
+        <a class="feedback" href="javascript:;">意见反馈</a> 
+    </div>
+</div>
+</div>
+
+</body>
+</html>
