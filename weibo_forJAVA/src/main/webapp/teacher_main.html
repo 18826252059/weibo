@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="res/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+   <script src="res/js/jquery/jquery-1.9.1.js"></script>
+   <script src="res/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="res/js/teacher-main.js"></script>
+<title>教师端-用户管理</title>
+
+</head>
+<body onload="loadUserDatas()">
+<div class="container">
+<table class="table" id="table">
+   <caption><h2>教师端-用户管理</h2>
+    <select name="management" id="management">
+      <option value="teacher_main" selected="selected">用户管理</option>
+      <option value="course_management">选课管理</option>
+    </select>
+  </caption>
+   <caption>
+           <button type="button" class="btn btn-primary btn-lg" id="user_add" data-toggle="modal" data-target="#myModal" onclick="optionUserData(this);">新增</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_delete" onclick="optionUserData(this);">删除</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_edit"  data-toggle="modal" data-target="#myModal"  onclick="optionUserData(this);">修改</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_find" onclick="optionUserData(this);">查询</button>
+           <input type="text" id="s_code" placeholder="按工号/学号查询" style="width: 120px;">
+           <input type="text" id="s_userName" placeholder="按姓名查询" style="width: 120px;">
+           
+   </caption>
+   <thead>
+      <tr>
+         <th>序号</th>
+         <th>工号/学号</th>
+         <th>姓名</th>
+         <th>性别</th>
+         <th>密码</th>
+         <th>年龄</th>
+         <th>身份</th>
+      </tr>
+   </thead>
+   <tbody id="tbody">
+   </tbody>
+</table>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal"  role="dialog" >
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> 
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">新增用户 </h4>
+         </div>
+         <form id='form'>
+         <div class="modal-body" id="modal-body">
+            <label for="name">用户名:</label>
+              <input type="text" class="form-control" id="m_code" placeholder="请输入工号">
+              <label for="name">姓名:</label>
+              <input type="text" class="form-control" id="m_name" placeholder="请输入姓名">
+              <label for="name">性别:</label>
+              <select class="form-control" id="m_sex">
+		         <option>男</option>
+		         <option>女</option>
+		      </select>
+              <label for="name">密码:</label>
+              <input type="text" class="form-control" id="m_passWord" placeholder="请输入密码">
+             <label for="name">年龄:</label>
+              <input type="text" class="form-control" id="m_age" placeholder="请输入年龄">
+              <label for="name">班级/职称:</label>
+              <input type="text" class="form-control" id="m_info" placeholder="请输入信息">
+              <label for="name">类型:</label>
+              <select class="form-control" id="m_type">
+		         <option>老师</option>
+		         <option>学生</option>
+		      </select>
+         </div>
+         </form>
+         <div class="modal-footer">
+            <button id='btnSave' type="button" class="btn btn-default" data-dismiss="modal">保存     </button>
+            <button type="button" class="btn btn-primary">提交更改</button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+
+</body>
+<script>
+  $(function() {
+    $("#management").change(function(){
+      // alert(".html"+$(this).val());
+      window.location.href = $(this).val()+".html";
+    });
+  });
+</script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	//bootstrap模态框事件
+
+	$('#myModal').on('hide.bs.modal', function () {
+	    // 执行一些动作...
+		//alert('hide');
+	  loadUserDatas();
+	/*    var inputElements = this.getElementsByTagName("input");
+	    var userArr = [];
+	    for(var i=0;i<inputElements.length;i++){
+	        userArr[i] = inputElements[i].value;
+	    }
+	    var user = New(User,userArr);
+	    //添加操作
+	    if(operateType == "add"){
+	    	//alert(' before add');
+	        	//user.addUserData();
+	       // refreshDatas(users);
+	    //编辑操作
+	    }else if(operateType == "edit"){
+	        user.editUserData();
+	        refreshDatas(users);
+	    }*/
+	});
+	
+	$('#btnSave').click(function(){
+	/*	var data = {'code':$("#m_code").val(),
+				'userName':$("#m_userName").val(),
+				'sex':$("#m_sex").val(),
+				'passWord':$("#m_passWord").val(),
+				'age':$("#m_age").val()}*/
+		var data = {code:$("#m_code").val(),
+						name:$("#m_name").val(),
+						sex:$("#m_sex").val(),
+						password:$("#m_passWord").val(),
+						age:$("#m_age").val(),
+						type:$("#m_type").val(),
+						info:$("#m_info").val()};
+		//alert( data.code);
+    if (operateType == "add") {
+		$.ajax({
+	  	  url : 'addUser',
+	  	  type : "POST" ,
+	  	  dataType:'json',                	       
+	  	  data : data,
+	  	  success : function(data){
+   	  		 data=eval(data);
+  	  		 alert(data.msg);
+           $('#myModal').modal('hide');
+  	  		 //loadUserDatas();
+	  		//alert(data);
+	  	  },
+	  	  error : function(data) {  
+	  		  $.messager.alert("提示", "操作失败", "info");  
+	  	   }  
+	    }); 
+  } else if (operateType == "edit") {
+    $.ajax({
+        url : 'editUser',
+        type : "POST" ,
+        dataType:'json',                         
+        data : data,
+        success : function(data){
+           data=eval(data);
+           alert(data.msg);
+           $('#myModal').modal('hide');
+           //loadUserDatas();
+        //alert(data);
+        },
+        error : function(data) {  
+          $.messager.alert("提示", "操作失败", "info");  
+         }  
+      }); 
+  }; 
+		return false;
+	})
+});
+</script>
+</html>

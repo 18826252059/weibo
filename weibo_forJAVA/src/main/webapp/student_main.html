@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="res/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+   <script src="res/js/jquery/jquery-1.9.1.js"></script>
+   <script src="res/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="res/js/student-main.js"></script>
+
+<title>学生端-选课管理</title>
+
+</head>
+<body onload="">
+<div class="container">
+<table class="table" id="table">
+   <caption><h2>学生端-选课管理</h2></caption>
+   <caption>
+           <button type="button" class="btn btn-primary btn-lg" id="user_check" onclick="optionUser(this);">已选课程</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_delete" onclick="optionUser(this);">退选</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_add" onclick="optionUser(this);">正选</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_find" onclick="optionUser(this);">查询可选课程</button>
+           <input type="text" id="s_cname" placeholder="按课程名称查询" style="width: 140px;">
+           <input type="text" id="s_teacherName" placeholder="按任课老师姓名查询" style="width: 140px;">
+   </caption>
+   <thead>
+      <tr>
+         <th>序号</th>
+         <th>课程号</th>
+         <th>课程名称</th>
+         <th>任课老师</th>
+         <th>学分</th>
+         <th>上课时间</th>
+         <th>上课地点</th>
+      </tr>
+   </thead>
+   <tbody id="tbody">
+   </tbody>
+</table>
+<button type="button" class="btn btn-primary btn-lg" id="submit">提交</button>
+</div>
+
+</body>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  $("#submit").click(function(){
+  // alert("click");
+  if (operateType == "add") {
+    // alert("in add");
+    var checkRowData = isCheckedData();
+    if (checkRowData != -1) {
+      var coursedata = coursedata || {};
+      coursedata = collectionRowData(checkRowData);
+      $.ajax({
+        url : 'addSelect',
+        type : "POST" ,
+        dataType:'json',                         
+        data : coursedata,
+        success : function(data){
+           data=eval(data);
+           alert(data.msg);
+           // loadSelelctDatas();
+        },
+        error : function(data) {  
+          alert("操作失败");
+         }  
+      }); 
+    };
+} else if (operateType == "delete") {
+  var checkRowData = isCheckedData();
+  if (checkRowData != -1) {
+    var coursedata = collectionRowData(checkRowData);
+    $.ajax({
+      url : 'delSelect',
+      type : "POST" ,
+      dataType:'json',                         
+      data : coursedata,
+      success : function(data){
+       data=eval(data);
+       alert(data.msg);
+       loadSelelctDatas();
+     },
+     error : function(data) {  
+      alert("操作失败");
+    }  
+  }); 
+  };
+};
+});
+});
+
+</script>
+</html>

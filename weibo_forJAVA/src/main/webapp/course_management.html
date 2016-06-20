@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="res/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+   <script src="res/js/jquery/jquery-1.9.1.js"></script>
+   <script src="res/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="res/js/course.js"></script>
+<title>教师端-选课管理</title>
+<!-- 用于切换用户管理与课程管理 -->
+<script>
+  $(function() {
+    $("#management").change(function(){
+      // alert(".html"+$(this).val());
+      window.location.href = $(this).val()+".html";
+    });
+  });
+</script>
+</head>
+<body onload="loadCourseDatas()">
+<div class="container">
+<table class="table" id="table">
+   <caption><h2>教师端-选课管理</h2>
+    <select name="management" id="management">
+      <option value="teacher_main">用户管理</option>
+      <option value="course_management" selected="selected">选课管理</option>
+    </select>
+  </caption>
+   <caption>
+           <button type="button" class="btn btn-primary btn-lg" id="user_add" data-toggle="modal" data-target="#myModal" onclick="optionCourseData(this);">新增课程</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_delete" onclick="optionCourseData(this);">删除课程</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_edit"  data-toggle="modal" data-target="#myModal"  onclick="optionCourseData(this);">修改课程</button>
+           <button type="button" class="btn btn-primary btn-lg" id="user_find" onclick="optionCourseData(this);">查询课程</button>
+           <input type="text" id="s_cid" placeholder="按课程号查询" style="width: 120px;">
+           <input type="text" id="s_cname" placeholder="按课程名称查询" style="width: 120px;">
+           
+   </caption>
+   <thead>
+      <tr>
+         <th>序号</th>
+         <th>课程号</th>
+         <th>课程名称</th>
+         <th>任课老师</th>
+         <th>学分</th>
+         <th>上课时间</th>
+         <th>上课地点</th>
+      </tr>
+   </thead>
+   <tbody id="tbody">
+   </tbody>
+</table>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal"  role="dialog" >
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> 
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">新设课程</h4>
+         </div>
+         <form id='form'>
+         <div class="modal-body" id="modal-body">
+            <label for="name">课程号：</label>
+              <input type="text" class="form-control" id="m_cid" placeholder="请输入课程号">
+              <label for="name">课程名称：</label>
+              <input type="text" class="form-control" id="m_cname" placeholder="请输入课程名称">
+              <label for="name">任课老师名称:</label>
+              <input type="text" class="form-control" id="m_teacherName" placeholder="请输入任课老师名称">
+		      
+              <label for="name">学分:</label>
+              <input type="text" class="form-control" id="m_grade" placeholder="请输入学分">
+             <label for="name">上课时间:</label>
+              <input type="text" class="form-control" id="m_time" placeholder="请输入上课时间">
+              <label for="name">上课地点:</label>
+              <input type="text" class="form-control" id="m_addr" placeholder="请输入上课地点">
+         </div>
+         </form>
+         <div class="modal-footer">
+            <button id='btnSave' type="button" class="btn btn-default" data-dismiss="modal">保存     </button>
+            <button type="button" class="btn btn-primary">提交更改</button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+
+</body>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	//bootstrap模态框事件
+
+	$('#myModal').on('hide.bs.modal', function () {
+	    // 执行一些动作...
+		// alert('hide');
+	  // loadUserDatas();
+	/*    var inputElements = this.getElementsByTagName("input");
+	    var userArr = [];
+	    for(var i=0;i<inputElements.length;i++){
+	        userArr[i] = inputElements[i].value;
+	    }
+	    var user = New(User,userArr);
+	    //添加操作
+	    if(operateType == "add"){
+	    	//alert(' before add');
+	        	//user.addUserData();
+	       // refreshDatas(users);
+	    //编辑操作
+	    }else if(operateType == "edit"){
+	        user.editUserData();
+	        refreshDatas(users);
+	    }*/
+      //----------------------------------------------------------
+      //加载课程信息
+      loadCourseDatas();
+	});
+	
+	$('#btnSave').click(function(){
+	/*	var data = {'code':$("#m_code").val(),
+				'userName':$("#m_userName").val(),
+				'sex':$("#m_sex").val(),
+				'passWord':$("#m_passWord").val(),
+				'age':$("#m_age").val()}*/
+		var data = {cid:$("#m_cid").val(),
+						cname:$("#m_cname").val(),
+						teacherName:$("#m_teacherName").val(),
+						grade:$("#m_grade").val(),
+						time:$("#m_time").val(),
+						addr:$("#m_addr").val()};
+		// alert(data);
+    if (operateType == "add") {
+		$.ajax({
+	  	  url : 'addCourse',
+	  	  type : "POST" ,
+	  	  dataType:'json',                	       
+	  	  data : data,
+	  	  success : function(data){
+   	  		 data=eval(data);
+  	  		 alert(data.msg);
+           $('#myModal').modal('hide');
+  	  		 //loadUserDatas();
+	  		//alert(data);
+	  	  },
+	  	  error : function(data) {  
+          alert("操作失败");
+	  		  // $.messager.alert("提示", "操作失败", "info");  
+	  	   }  
+	    }); 
+  } else if (operateType == "edit") {
+    $.ajax({
+        url : 'editCourse',
+        type : "POST" ,
+        dataType:'json',                         
+        data : data,
+        success : function(data){
+           data=eval(data);
+           alert(data.msg);
+           $('#myModal').modal('hide');
+           //loadUserDatas();
+        //alert(data);
+        },
+        error : function(data) {  
+          alert("操作失败");  
+         }  
+      }); 
+  }; 
+		return false;
+	});
+});
+</script>
+</html>
