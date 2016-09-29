@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+  font-family: "Microsoft Yahei", "微软雅黑";
+}
+.main {
+  width: 1200px;
+  height: 450px;
+  margin: 10px auto;
+  background: #00a1d8;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+}
+.main .left {
+  float: left;
+ /* border-right: 2px solid #fff;*/
+  /*width: 700px;
+  height: 400px;*/
+ /* margin: 10px 0;*/
+
+}
+/*.main .left img {
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
+}*/
+.main .right {
+  /*width: 380px;*/
+  height: 400px;
+  float: right;
+ /* border: 1px solid #fff;*/
+  /*margin: 10px 40px;*/
+
+}
+.main .right .form_style {
+  margin: 10px auto;
+  color: #fff;
+  margin-top: 60px;
+}
+.main .right .form_style h2 {
+  margin-bottom: 20px;
+}
+.main .right .form_style .item_content {
+  width: 400px;
+  margin: 0 auto 20px;
+  clear: both;
+}
+.main .right .form_style .item_content a {
+  color: #fff;
+  text-decoration: none;
+}
+.main .right .form_style .item_content a:hover {
+  color: red;
+}
+.main .right .form_style label {
+  width: 80px;
+  text-align: right;
+  margin-right: 20px;
+}
+.main .right .form_style input[type="text"] {
+  width: 280px;
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: #000;
+}
+.main .right .form_style input[type="password"] {
+  width: 280px;
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: #000;
+}
+.main .right .form_style .item_l {
+  float: left;
+  margin-left: 60px;
+}
+.main .right .form_style .item_r {
+  float: right;
+  margin-right: 50px;
+}
+.main .right .form_style .item_r a {
+  text-decoration: none;
+  color: #fff;
+}
+.main .right .form_style .item_r a:hover {
+  color: red;
+}
+.main .right .form_style .login_btn {
+  width: 120px;
+  height: 35px;
+  margin: 10px 5px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #00a1d8;
+}
+.main .right .form_style .login_btn:hover {
+  background-color: #00a1d8;
+  color: #fff;
+}
+.main .right .form_style .register_btn {
+  width: 120px;
+  height: 35px;
+  margin: 10px 5px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #00a1d8;
+}
+.main .right .form_style .register_btn:hover {
+  background-color: #00a1d8;
+  color: #fff;
+}
+/*.footer {
+  height: 100px;
+  background: #00a1d8 ;
+  text-align: center;
+  line-height: 24px;
+  padding: 50px 0;
+  margin-top: 20px ;
+}
+.footer i {
+  font-style: normal;
+  margin: 0 5px;
+}*/
+.footer{text-align:center; background-color:#00a1d8; line-height:24px; padding:30px 0;}
+.footer i{font-style:normal; margin:0 5px; }
+.footer a{color:#fff;}
+.footer a:hover{color:red;}

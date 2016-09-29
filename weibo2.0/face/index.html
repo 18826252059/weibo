@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>网友小毛分享Jquery实现微博分享评论表情特效</title>
+<meta name="Keywords" content="网友小毛分享Jquery实现微博分享评论表情特效,Jquery插件,Jquery原创,Jquery资源,Jquery特效,js特效,div+css,JquerySchool" />
+<meta name="description" content="JquerySchool是一个专门分享jquery资源、jquery插件、jquery特效的一个网站,完全开放源代码,把实际开发中应用最多、最实用的Jquery资源抽取出来再加以精心编排,让广大网友能以最短的时间、花最少的精力去真正掌握jQuery开发的知识。" />
+	<link rel="stylesheet" href="css/rl_exp.css" />
+</head>
+<body>
+<style type="text/css">
+	
+	.xm-bq{margin:20px 0;font-size:14px;color:#333;}
+	.xm-bq a{color:#09c;margin:0 5px;}
+	.xm-bq a:hover{color:#E10602;}
+	.comment-main{
+		display:inline-block;*display:inline;zoom:1;width:600px;margin:0 auto;border:1px solid #ddd;background:#eee;padding:20px;border-radius:3px;
+		text-align:left;
+	}
+	.comment-main textarea{width:100%;border:1px solid #dcdcdc;}
+	.comment-main textarea:focus{outline:none;border-color:#4bf;}
+	.comment-main a{font-size:12px;text-decoration:none;color:#09c;}
+	.comment-main a:hover{color:#E10602;}
+</style>
+<div style="text-align:center;" id="xm">
+	<div id="content"></div>
+	<div id="comment" class="comment-main">
+		<textarea name="test" id="rl_exp_input" cols="30" rows="10"></textarea>
+		<a href="javascript:void(0);" id="rl_exp_btn">表情</a>
+		<input type="button" id="submit" value="解析">
+	</div>
+	<div class="rl_exp" id="rl_bq" style="display:none;">
+		<ul class="rl_exp_tab clearfix">
+			<li><a href="javascript:void(0);" class="selected">默认</a></li>
+			<li><a href="javascript:void(0);">拜年</a></li>
+			<li><a href="javascript:void(0);">浪小花</a></li>
+			<li><a href="javascript:void(0);">暴走漫画</a></li>
+		</ul>
+		<ul class="rl_exp_main clearfix rl_selected"></ul>
+		<ul class="rl_exp_main clearfix" style="display:none;"></ul>
+		<ul class="rl_exp_main clearfix" style="display:none;"></ul>
+		<ul class="rl_exp_main clearfix" style="display:none;"></ul>
+		<a href="javascript:void(0);" class="close">×</a>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/rl_exp.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#submit').click(function () {
+		var pattern = /\[(mr|lxh|gnl|bzmh)_([0-9]+)\]/g;
+		var content = $('#rl_exp_input').val();
+		$('#content').html(content.replace(pattern, '<img src="img/$1/$2.gif" border="0">'));
+	});
+});
+</script>
+</body>
+</html>

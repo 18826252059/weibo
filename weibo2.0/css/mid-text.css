@@ -1,0 +1,56 @@
+.in-text{
+    width: 100%;
+}
+.left span{
+    display: inline-block;
+    height: 40px;
+    background: yellow;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 2px;
+    float: left;
+}
+.inputpanel{
+    width: 85%;
+    height: 40px;
+    float: right;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin-top: 20px;
+    background: white;
+}
+.input-wrap{
+    margin-top: 4px;
+    margin-right: 4px;
+    float: right;
+}
+.input-wrap span{
+    cursor: pointer;
+}
+.tip{
+    float: left;
+}
+.list{
+    clear: both;
+}
+.list span{
+    display: inline-block;
+}
+.ls-left{
+    width: 15%;
+    text-align: right;
+    float: left;
+}
+.ls-right{
+    width: 85%;
+    float: right;
+}
+.write{
+    resize: none;
+    width: 100%;
+    height: 100%;
+    clear: both;
+}

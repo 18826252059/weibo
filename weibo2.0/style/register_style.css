@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-family: "Microsoft Yahei", "微软雅黑";
+}
+.main {
+  width: 1000px;
+  height: 500px;
+  margin: 10px auto;
+  border: 10px double #00a1d8;
+  padding: 10px 0;
+  background: #fff;
+}
+.main h2 {
+  color: #00a1d8;
+  text-align: center;
+}
+.main .item_content {
+  background: #fff;
+  width: 600px;
+  color: #00a1d8;
+  margin-top: 20px;
+  margin-left: 200px;
+}
+.main .item_content label {
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+.main .item_content input[type="text"] {
+  width: 250px;
+}
+.main .item_content input[type="password"] {
+  width: 250px;
+}
+.main .item_content input[type="email"] {
+  width: 250px;
+}.main .item_content input[type="file"] {
+  display: inline-block;
+   width: 250px;
+ }
+.main .item_content input[type="submit"] {
+  width: 200px;
+  height: 40px;
+  background-color: #00a1d8;
+  color: #fff;
+}
+.main .item_content .sexselect {
+  display: inline-block;
+  width: 250px;
+  text-align: center;
+}
+.main .item_content .sex {
+  font-weight: bold;
+  margin-right: 50px;
+}
+.main .item_content .tipArea {
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+}
